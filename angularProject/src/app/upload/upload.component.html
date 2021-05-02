@@ -1,0 +1,45 @@
+<div class="container">
+  <div *ngIf="isOutdated==0">
+    <div style="margin: 20px">
+      <h3>Déposer un fichier</h3>
+    </div>
+    <div *ngIf="currentFile" class="progress">
+      <div
+        class="progress-bar progress-bar-info progress-bar-striped"
+        role="progressbar"
+        attr.aria-valuenow="{{ progress }}"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        [ngStyle]="{ width: progress + '%' }"
+      >
+        {{ progress }}%
+      </div>
+    </div>
+
+    <div class="file-input">
+      <label class="btn btn-default">
+        <input type="file" (change)="selectFile($event)" accept=".jar"/>
+      </label>
+      <button *ngIf="canUpload==1" class="btn btn-success" [disabled]="!selectedFiles" (click)="upload()">Envoyer <i class="material-icons">publish</i></button>
+    </div>
+
+    <p *ngIf="canUpload==0">Vous ne pouvez avoir qu'un seul fichier à la fois</p>
+    <div class="alert alert-light" role="alert">{{ message }}</div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">Liste des fichiers envoyés</div>
+    <ul
+      class="list-group list-group-flush"
+      *ngFor="let file of fileInfos | async"
+    >
+      <li class="list-group-item file-item">
+        <span>{{ file.name }}</span>
+        <div class="file-button">
+          <button (click)="downloadFile(file.name)" class="btn btn-success"><i class="material-icons">get_app</i></button>
+          <button *ngIf="isOutdated==0" (click)="deleteFile(file.name)" class="btn btn-danger"><i class="material-icons">delete</i></button>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>

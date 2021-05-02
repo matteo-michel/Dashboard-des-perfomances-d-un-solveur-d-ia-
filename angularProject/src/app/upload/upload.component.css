@@ -1,0 +1,21 @@
+.file-item {
+  display: flex;
+  align-items: center;
+}
+
+.file-button {
+  margin: 5px 10px 5px auto;
+}
+
+.file-button > .btn-success {
+  margin-right: 5px;
+}
+
+.file-input {
+  display: flex;
+  align-items: center;
+}
+
+label.btn-default {
+  margin-bottom: 0;
+}

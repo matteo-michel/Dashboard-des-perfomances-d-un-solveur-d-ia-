@@ -1,0 +1,22 @@
+<ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a class="nav-link" [class.active]="state=='outdated'" (click)="changeState('outdated')">Anciennes Sessions</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" [class.active]="state=='logged'" (click)="changeState('logged')">Sessions en cours</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" [class.active]="state=='available'" (click)="changeState('available')">Sessions disponibles</a>
+  </li>
+</ul>
+
+
+<div *ngIf="this.state == 'available'">
+  <app-sessions *ngFor="let s of sessions" [session]="s" (join)="joinSession($event)"></app-sessions>
+</div>
+<div *ngIf="this.state == 'logged'">
+  <app-registered-sessions *ngFor="let s of sessionsLoginActual" [session]="s" (quit)="quitSession($event)"></app-registered-sessions>
+</div>
+<div *ngIf="this.state == 'outdated'">
+  <app-outdated-session *ngFor="let s of sessionsLoginOld" [session]="s"></app-outdated-session>
+</div>

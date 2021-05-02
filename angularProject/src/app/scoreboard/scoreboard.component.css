@@ -1,0 +1,16 @@
+.full-width-table {
+  width: 100%;
+}
+
+mat-form-field {
+  margin-top: 15px;
+}
+
+.excel {
+  margin: 10px 10px 10px auto;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+}
